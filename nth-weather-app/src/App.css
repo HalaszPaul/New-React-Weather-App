@@ -1,29 +1,48 @@
 * {
-  margin: 5;
-  padding: 15;
+  margin: 0;
+    padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Montserrat", sans-serif;
 }
+
 .app {
-  background-image: url("./assets/cool.jpg");
+  background-image: url("./assets/clouds.jpeg");
   background-size: cover;
+}
+.app.cold {
+  background-image: url("./assets/cool.jpeg");
+  background-size: cover;
+}
+
+.no-data-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .app.warm {
-  background-image: url("./assets/warm.jpg");
+  background-image: url("./assets/warm.jpeg");
   background-size: cover;
 }
+
 main {
   min-height: 100vh;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba (0, 0, 0, 0.75));
   padding: 25px;
+  display: flex;
+    flex-direction: column;
 }
+
 .search-box {
   width: 100%;
   margin-top: 0 0 75px;
 
 }
+
 .search-box .search-bar {
   display: block;
   width: 100%;
@@ -40,9 +59,11 @@ main {
   font-size: 20px;
   transition: 0.4s ease;
 }
+
 .search-box .search-bar:focus {
   background-color: rgba(255, 255, 255, 0.75);
 }
+
 .location-box .location {
   color: #FFF;
   margin-top: 25px;
@@ -51,6 +72,7 @@ main {
   text-align: center;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
+
 .location-box .date {
   color: #FFF;
   font-size: 20px;
@@ -59,10 +81,12 @@ main {
   text-align: center;
   text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
 }
+
 .weather-box {
   text-align: center;
-  
+
 }
+
 .weather-box .temp {
   position: relative;
   display: inline-block;
@@ -77,6 +101,7 @@ main {
   text-align: center;
   box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
+
 .weather-box .weather {
   color: #FFF;
   font-size: 48px;
