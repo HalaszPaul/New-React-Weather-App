@@ -1,6 +1,7 @@
-import { useState } from "react";
 import React from "react";
+import { useState } from "react";
 import "./App.css";
+import { dateToString } from "./utils/date-format";
 
 const api = {
   key: "e94102957f5acd1fdac20bbf20e7aaae",
@@ -11,6 +12,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
 
+  const currentDate = dateToString(new Date());
   const search = (evt) => {
     if (evt.key === "Enter") {
       fetch(`${api.base}weather?q=${query}&appid=${api.key}&units=metric`)
@@ -28,49 +30,11 @@ function App() {
     }
   };
 
-  const dateBuilder = (d) => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-
-    const day = days[d.getDay()];
-    const date = d.getDate();
-    const month = months[d.getMonth()];
-    const year = d.getFullYear();
-
-    return `${day} ${date} ${month} ${year}`;
-  };
+  const weatherTemperatureClass = weather?.main?.temp > 16 ? "warm" : "cold";
+  const appClass = weather.main ? weatherTemperatureClass : "";
 
   return (
-    <div
-      className={
-        typeof weather.main !== "undefined"
-          ? weather.main.temp > 16
-            ? "app warm"
-            : "app"
-          : "app"
-      }
-    >
+    <div className={`app ${appClass}`}>
       <main>
         <div className="search-box">
           <input
@@ -82,13 +46,13 @@ function App() {
             onKeyDown={handleKeyDown}
           />
         </div>
-        {typeof weather.main !== "undefined" ? (
+        {weather?.main ? (
           <div>
             <div className="location-box">
               <div className="location">
                 {weather.name},{weather.sys.country}
               </div>
-              <div className="date">{dateBuilder(new Date())}</div>
+              <div className="date">{currentDate}</div>
             </div>
             <div className="weather-box">
               <div className="temp">{Math.round(weather.main.temp)}°C</div>
@@ -96,7 +60,12 @@ function App() {
             </div>
           </div>
         ) : (
-          ""
+          <div class="no-data-container">
+            <h2>
+              Search for a warm place like Dubai or a cold place like
+              Stockholm... Or any other city
+            </h2>
+          </div>
         )}
       </main>
     </div>
