@@ -8,12 +8,12 @@
 https://github.com/HalaszPaul/New-React-Weather-App.git
 
 ### Then navigate to the project directory and install the dependencies:
-```cd nth-weather-app
-``` npm install
+```cd nth-weather-app```
+``` npm install```
 
 ### Usage
 ### To use the app, simply start the development server:
-```npm run dev
+```npm run dev```
 
 ### To open the app in your browser press Ctrl key and left click on the localhost link 
 
